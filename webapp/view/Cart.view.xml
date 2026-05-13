@@ -1,0 +1,91 @@
+<mvc:View
+    controllerName="shoppingcartapp.controller.Cart"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+
+    <Page title="Cart" showNavButton="true" navButtonPress="onBack">
+        <headerContent>
+            <Button
+                text="Products"
+                icon="sap-icon://product"
+                press="onNavProducts"/>
+        </headerContent>
+
+        <content>
+            <VBox class="sapUiMediumMargin">
+
+                <MessageStrip
+                    text="Discount: Quantity 10+ = 10%, Quantity 20+ = 20%"
+                    type="Information"
+                    showIcon="true"
+                    class="sapUiSmallMarginBottom"/>
+
+                <List
+                    id="cartList"
+                    items="{cart>/items}"
+                    noDataText="Your cart is empty">
+
+                    <CustomListItem>
+                        <VBox class="sapUiSmallMargin">
+
+                            <Title text="{cart>ProductName}" level="H4"/>
+
+                            <HBox justifyContent="SpaceBetween" alignItems="Center">
+                                <Text text="Price: ₹{cart>UnitPrice}"/>
+                                <Text text="Stock: {cart>UnitsInStock}"/>
+                            </HBox>
+
+                            <HBox alignItems="Center" class="sapUiSmallMarginTop">
+                                <Label text="Quantity:" width="80px"/>
+                                <Input
+                                    value="{cart>Quantity}"
+                                    type="Number"
+                                    width="100px"
+                                    liveChange="onQuantityChange"/>
+                            </HBox>
+
+                            <HBox justifyContent="SpaceBetween" class="sapUiSmallMarginTop">
+                                <ObjectStatus
+                                    text="{path:'cart>Discount', formatter:'.formatter.discountText'}"
+                                    state="Information"/>
+
+                                <ObjectStatus
+                                    text="Line Total: ₹{cart>LineTotal}"
+                                    state="Success"/>
+                            </HBox>
+
+                            <Button
+                                text="Delete"
+                                icon="sap-icon://delete"
+                                type="Reject"
+                                class="sapUiSmallMarginTop"
+                                press="onDeleteItem"/>
+
+                        </VBox>
+                    </CustomListItem>
+                </List>
+
+                <Toolbar class="sapUiSmallMarginTop">
+                    <Title text="Total Items: {cart>/totalItems}"/>
+                    <ToolbarSpacer/>
+                    <Title text="Grand Total: ₹{cart>/grandTotal}"/>
+                </Toolbar>
+
+                <HBox class="sapUiSmallMarginTop">
+                    <Button
+                        text="Clear Cart"
+                        icon="sap-icon://delete"
+                        type="Reject"
+                        press="onClearCart"/>
+
+                    <Button
+                        text="Undo Delete"
+                        icon="sap-icon://undo"
+                        class="sapUiSmallMarginBegin"
+                        press="onUndoDelete"/>
+                </HBox>
+
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

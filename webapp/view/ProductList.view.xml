@@ -1,0 +1,62 @@
+<mvc:View
+    controllerName="shoppingcartapp.controller.ProductList"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+
+    <Page title="Product List">
+        <headerContent>
+            <Button
+                text="Cart"
+                icon="sap-icon://cart"
+                press="onNavToCart"/>
+        </headerContent>
+
+        <content>
+            <VBox class="sapUiSmallMargin">
+
+                <SearchField
+                    id="productSearch"
+                    width="100%"
+                    placeholder="Search product name..."
+                    liveChange="onSearch"/>
+
+                <Input
+                    id="maxPriceInput"
+                    class="sapUiSmallMarginTop"
+                    type="Number"
+                    placeholder="Filter by max price"
+                    liveChange="onSearch"/>
+
+                <List
+                    id="productList"
+                    class="sapUiSmallMarginTop"
+                    items="{/Products}"
+                    noDataText="No products found">
+
+                    <ObjectListItem
+                        title="{ProductName}"
+                        number="{UnitPrice}"
+                        numberUnit="₹"
+                        type="Navigation"
+                        press="onViewDetails">
+
+                        <attributes>
+                            <ObjectAttribute text="Product ID: {ProductID}"/>
+                            <ObjectAttribute text="Category ID: {CategoryID}"/>
+                            <ObjectAttribute text="Stock: {UnitsInStock}"/>
+                        </attributes>
+
+                        <firstStatus>
+                            <ObjectStatus
+                                text="View Details"
+                                state="Information"/>
+                        </firstStatus>
+
+                    </ObjectListItem>
+
+                </List>
+
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

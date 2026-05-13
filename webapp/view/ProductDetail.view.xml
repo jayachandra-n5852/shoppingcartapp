@@ -1,0 +1,116 @@
+<mvc:View
+    controllerName="shoppingcartapp.controller.ProductDetail"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.f">
+
+    <f:DynamicPage
+        id="productDetailPage"
+        showFooter="true"
+        class="productDetailPage">
+
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="{ProductName}" level="H2"/>
+                </f:heading>
+
+                <f:actions>
+                    <Button text="Cart" icon="sap-icon://cart" press="onNavToCart"/>
+                    <Button text="Back" icon="sap-icon://nav-back" press="onBack"/>
+                </f:actions>
+            </f:DynamicPageTitle>
+        </f:title>
+
+        <f:header>
+            <f:DynamicPageHeader pinnable="true">
+                <FlexBox
+                    width="100%"
+                    wrap="Wrap"
+                    justifyContent="SpaceBetween"
+                    alignItems="Start"
+                    class="productHeaderBox">
+
+                    <VBox class="productHeaderCard">
+                        <Title text="Product Identity" level="H5"/>
+                        <ObjectStatus title="Product ID" text="{ProductID}" state="Information"/>
+                        <ObjectStatus title="Category ID" text="{CategoryID}" state="Information"/>
+                        <ObjectStatus title="Supplier ID" text="{SupplierID}" state="Information"/>
+                    </VBox>
+
+                    <VBox class="productHeaderCard">
+                        <Title text="Inventory Summary" level="H5"/>
+                        <ObjectStatus title="Price" text="₹ {UnitPrice}" state="Success"/>
+                        <ObjectStatus
+                            title="Stock"
+                            text="{UnitsInStock}"
+                            state="{path:'UnitsInStock', formatter:'.formatter.stockState'}"/>
+                        <ObjectStatus title="On Order" text="{UnitsOnOrder}" state="Warning"/>
+                    </VBox>
+
+                </FlexBox>
+            </f:DynamicPageHeader>
+        </f:header>
+
+        <f:content>
+            <VBox class="productDetailContent">
+
+                <Panel
+                    headerText="Product Details"
+                    class="productCard">
+
+                    <VBox class="sapUiSmallMargin">
+                        <ObjectAttribute class="productInfoText" text="Product Name: {ProductName}"/>
+                        <ObjectAttribute class="productInfoText" text="Quantity Per Unit: {QuantityPerUnit}"/>
+                        <ObjectAttribute class="productInfoText" text="Unit Price: ₹ {UnitPrice}"/>
+                        <ObjectAttribute class="productInfoText" text="Units In Stock: {UnitsInStock}"/>
+                        <ObjectAttribute class="productInfoText" text="Units On Order: {UnitsOnOrder}"/>
+                        <ObjectAttribute class="productInfoText" text="Reorder Level: {ReorderLevel}"/>
+                        <ObjectAttribute class="productInfoText" text="Discontinued: {Discontinued}"/>
+                    </VBox>
+                </Panel>
+
+                <Panel
+                    headerText="Add Product to Cart"
+                    class="productCard">
+
+                    <VBox class="sapUiSmallMargin">
+                        <Label text="Enter Quantity"/>
+
+                        <Input
+                            id="quantityInput"
+                            class="quantityInput"
+                            type="Number"
+                            value="1"
+                            liveChange="onQuantityLiveChange"/>
+
+                        <MessageStrip
+                            text="Quantity must be greater than 0 and should not exceed stock."
+                            type="Information"
+                            showIcon="true"
+                            class="sapUiSmallMarginTop"/>
+                    </VBox>
+                </Panel>
+
+            </VBox>
+        </f:content>
+
+        <f:footer>
+            <OverflowToolbar class="productFooter">
+                <ToolbarSpacer/>
+
+                <Button
+                    text="Back"
+                    icon="sap-icon://nav-back"
+                    press="onBack"/>
+
+                <Button
+                    text="Add to Cart"
+                    icon="sap-icon://cart"
+                    type="Emphasized"
+                    press="onAddToCart"/>
+            </OverflowToolbar>
+        </f:footer>
+
+    </f:DynamicPage>
+</mvc:View>

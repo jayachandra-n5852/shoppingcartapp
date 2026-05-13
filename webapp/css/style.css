@@ -1,0 +1,83 @@
+/* App background */
+.sapMPage,
+.sapFDynamicPage {
+    background: #f5f6f7;
+}
+
+/* Product Detail page spacing */
+.productDetailContent {
+    padding: 1rem 2rem;
+}
+
+/* Fiori card style */
+.productCard {
+    background: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 0.125rem 0.75rem rgba(0, 0, 0, 0.08);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+}
+
+/* Card content spacing */
+.productCard .sapMPanelContent {
+    padding: 1.5rem;
+}
+
+/* Section heading */
+.productCard .sapMPanelHdr {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #0a2540;
+}
+
+/* Product text */
+.productInfoText {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: #354a5f;
+}
+
+/* Quantity input */
+.quantityInput {
+    max-width: 220px;
+}
+
+/* Footer shadow */
+.sapFDynamicPageFooter .sapMTB {
+    border-radius: 1rem 1rem 0 0;
+    box-shadow: 0 -0.125rem 0.75rem rgba(0, 0, 0, 0.12);
+}
+
+/* Buttons */
+.sapMBtnEmphasized {
+    border-radius: 0.75rem;
+}
+
+/* Product list card style */
+.productListItem {
+    background: #ffffff;
+    border-radius: 0.75rem;
+    margin: 0.5rem 0;
+    padding: 1rem;
+    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.06);
+}
+
+/* Responsive mobile */
+@media (max-width: 600px) {
+    .productDetailContent {
+        padding: 0.75rem;
+    }
+
+    .productCard .sapMPanelContent {
+        padding: 1rem;
+    }
+
+    .quantityInput {
+        width: 100% !important;
+        max-width: 100%;
+    }
+
+    .sapFDynamicPageTitleMain {
+        flex-wrap: wrap;
+    }
+}

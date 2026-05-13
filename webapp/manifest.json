@@ -1,0 +1,117 @@
+{
+  "_version": "1.84.0",
+  "sap.app": {
+    "id": "shoppingcartapp",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "dataSources": {
+      "mainService": {
+        "uri": "/V2/Northwind/Northwind.svc/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.120.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "shoppingcartapp.i18n.i18n",
+          "supportedLocales": [""],
+          "fallbackLocale": ""
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "useBatch": false,
+          "defaultBindingMode": "TwoWay"
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "rootView": {
+      "viewName": "shoppingcartapp.view.App",
+      "type": "XML",
+      "id": "rootView",
+      "async": true
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "viewPath": "shoppingcartapp.view",
+        "async": true
+      },
+      "routes": [
+        {
+          "name": "ProductList",
+          "pattern": "",
+          "target": "ProductList"
+        },
+        {
+          "name": "ProductDetail",
+          "pattern": "product/{id}",
+          "target": "ProductDetail"
+        },
+        {
+          "name": "Cart",
+          "pattern": "cart",
+          "target": "Cart"
+        }
+      ],
+      "targets": {
+        "ProductList": {
+          "viewName": "ProductList"
+        },
+        "ProductDetail": {
+          "viewName": "ProductDetail"
+        },
+        "Cart": {
+          "viewName": "Cart"
+        }
+      }
+    }
+  }
+}
